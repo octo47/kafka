@@ -36,8 +36,10 @@ class KafkaTimerTest extends JUnit3Suite {
       clock.addMillis(1000)
     }
     assertEquals(1, metric.count())
-    assertTrue((metric.max() - 1000).abs <= Double.Epsilon)
-    assertTrue((metric.min() - 1000).abs <= Double.Epsilon)
+    //Epsilon removed in 2.10, Eps added in 2.11. Inline the definition here instead
+    //See https://issues.scala-lang.org/browse/SI-3791
+    assertTrue((metric.max() - 1000).abs <= java.lang.Double.longBitsToDouble(0x3ca0000000000000L))
+    assertTrue((metric.min() - 1000).abs <= java.lang.Double.longBitsToDouble(0x3ca0000000000000L))
   }
 
   private class ManualClock extends Clock {

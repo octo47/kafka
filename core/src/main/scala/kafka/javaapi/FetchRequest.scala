@@ -29,7 +29,7 @@ class FetchRequest(correlationId: Int,
                    requestInfo: java.util.Map[TopicAndPartition, PartitionFetchInfo]) {
 
   val underlying = {
-    val scalaMap = JavaConversions.asMap(requestInfo).toMap
+    val scalaMap = JavaConversions.asScalaMap(requestInfo).toMap
     kafka.api.FetchRequest(
       correlationId = correlationId,
       clientId = clientId,

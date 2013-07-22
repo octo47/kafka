@@ -31,6 +31,7 @@ import kafka.utils._
 import kafka.producer.{ProducerConfig, KeyedMessage, Producer}
 import java.util.{Collections, Properties}
 import org.apache.log4j.{Logger, Level}
+import collection.JavaConverters._
 import kafka.utils.TestUtils._
 
 class ZookeeperConsumerConnectorTest extends JUnit3Suite with KafkaServerTestHarness with Logging {
@@ -406,10 +407,9 @@ class ZookeeperConsumerConnectorTest extends JUnit3Suite with KafkaServerTestHar
   }
 
   def getZKChildrenValues(path : String) : Seq[Tuple2[String,String]] = {
-    import scala.collection.JavaConversions
     val children = zkClient.getChildren(path)
     Collections.sort(children)
-    val childrenAsSeq : Seq[java.lang.String] = JavaConversions.asBuffer(children)
+    val childrenAsSeq : Seq[java.lang.String] = children.asScala
     childrenAsSeq.map(partition =>
       (partition, zkClient.readData(path + "/" + partition).asInstanceOf[String]))
   }

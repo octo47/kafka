@@ -450,7 +450,7 @@ class AsyncProducerTest extends JUnit3Suite {
     val topic = "topic1"
     val msgs = TestUtils.getMsgStrings(5)
     val scalaProducerData = msgs.map(m => new KeyedMessage[String, String](topic, m))
-    val javaProducerData = scala.collection.JavaConversions.asList(scalaProducerData)
+    val javaProducerData = scala.collection.JavaConversions.asJavaList(scalaProducerData)
 
     val mockScalaProducer = EasyMock.createMock(classOf[kafka.producer.Producer[String, String]])
     mockScalaProducer.send(scalaProducerData.head)

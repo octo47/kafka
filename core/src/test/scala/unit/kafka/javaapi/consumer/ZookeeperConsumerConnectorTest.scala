@@ -21,7 +21,6 @@ import junit.framework.Assert._
 import kafka.integration.KafkaServerTestHarness
 import kafka.server._
 import org.scalatest.junit.JUnit3Suite
-import scala.collection.JavaConversions._
 import org.apache.log4j.{Level, Logger}
 import kafka.message._
 import kafka.serializer._
@@ -32,6 +31,7 @@ import kafka.utils.TestUtils._
 import kafka.utils.{Logging, TestUtils}
 import kafka.consumer.{KafkaStream, ConsumerConfig}
 import kafka.zk.ZooKeeperTestHarness
+import scala.collection.JavaConversions
 
 class ZookeeperConsumerConnectorTest extends JUnit3Suite with KafkaServerTestHarness with ZooKeeperTestHarness with Logging {
 
@@ -85,7 +85,7 @@ class ZookeeperConsumerConnectorTest extends JUnit3Suite with KafkaServerTestHar
       val ms = 0.until(messagesPerNode).map(x => header + conf.brokerId + "-" + partition + "-" + x)
       messages ++= ms
       import scala.collection.JavaConversions._
-      javaProducer.send(asList(ms.map(new KeyedMessage[Int, String](topic, partition, _))))
+      javaProducer.send(asJavaList(ms.map(new KeyedMessage[Int, String](topic, partition, _))))
     }
     javaProducer.close
     messages
@@ -102,8 +102,9 @@ class ZookeeperConsumerConnectorTest extends JUnit3Suite with KafkaServerTestHar
 
   def getMessages(nMessagesPerThread: Int, 
                   jTopicMessageStreams: java.util.Map[String, java.util.List[KafkaStream[String, String]]]): List[String] = {
+    import scala.collection.JavaConversions._
     var messages: List[String] = Nil
-    val topicMessageStreams = asMap(jTopicMessageStreams)
+    val topicMessageStreams = JavaConversions.asScalaMap(jTopicMessageStreams).toMap
     for ((topic, messageStreams) <- topicMessageStreams) {
       for (messageStream <- messageStreams) {
         val iterator = messageStream.iterator
