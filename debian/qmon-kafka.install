@@ -1,0 +1,4 @@
+target/RELEASE/kafka/libs /usr/share/qmon-kafka
+target/RELEASE/kafka/bin /usr/share/qmon-kafka
+target/RELEASE/kafka/*.jar /usr/share/qmon-kafka
+target/RELEASE/kafka/config/* /etc/qmon-kafka

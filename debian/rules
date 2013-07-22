@@ -1,0 +1,21 @@
+#! /usr/bin/make -f
+
+export DH_OPTIONS
+
+sbt=./sbt
+sbt_options=-Dsbt.global.base=debian/.sbt/sbtboot -Dsbt.boot.directory=debian/.sbt/boot -Dsbt.ivy.home=debian/.sbt/ivy
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	@set -e;\
+                ${sbt} ${sbt_options} update;\
+                ${sbt} ${sbt_options} release;
+         
+	dh_auto_install
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf __build
+	${sbt} ${sbt_options} clean

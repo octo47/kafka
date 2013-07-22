@@ -1,0 +1,12 @@
+Source: qmon-kafka
+Section: misc
+Priority: optional
+Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 9), openjdk-7-jdk | java7-jdk | java6-sdk | yandex-jdk7 | yandex-jdk6
+Maintainer: Nikolay Bryskin <devel.niks@gmail.com>
+
+Package: qmon-kafka
+Architecture: all
+Depends: ${misc:Depends}, openjdk-7-jre-headless | java7-runtime-headless | java6-runtime-headless | yandex-jdk7 | yandex-jdk6, adduser
+Description: QMon version of kafka
+ Patched version for Scala 2.10

@@ -40,23 +40,25 @@ object KafkaBuild extends Build {
     <distribution>repo</distribution>
   </license>
 </licenses>,
-    scalacOptions ++= Seq("-deprecation", "-unchecked", "-g:none"),
+    scalacOptions ++= Seq("-deprecation", "-unchecked", "-g:source"),
     crossScalaVersions := Seq("2.8.0","2.8.2", "2.9.1", "2.9.2", "2.10.1"),
     excludeFilter in unmanagedSources <<= scalaVersion(v => if (v.startsWith("2.8")) "*_2.9+.scala" else "*_2.8.scala"),
-    scalaVersion := "2.8.0",
-    version := "0.8.0-beta1",
-    publishTo := Some("Apache Maven Repo" at "https://repository.apache.org/service/local/staging/deploy/maven2"),
+    scalaVersion := "2.10.2",
+    version := "0.8.0-beta1-qmon4",
+    publishMavenStyle := false,
+    publishTo := Some(Resolver.file("octo47.github.com", file(Path.userHome + "/Projects/github/octo47.github.com/repo"))),
+    publishArtifact in Test := true,
     credentials += Credentials(Path.userHome / ".m2" / ".credentials"),
     buildNumber := System.getProperty("build.number", ""),
     version <<= (buildNumber, version)  { (build, version)  => if (build == "") version else version + "+" + build},
-    releaseName <<= (name, version, scalaVersion) {(name, version, scalaVersion) => name + "_" + scalaVersion + "-" + version},
+    releaseName := "kafka",
     javacOptions in compile ++= Seq("-Xlint:unchecked", "-source", "1.5"),
     javacOptions in doc ++= Seq("-source", "1.5"),
     parallelExecution in Test := false, // Prevent tests from overrunning each other
     libraryDependencies ++= Seq(
       "log4j"                 % "log4j"        % "1.2.15" exclude("javax.jms", "jms"),
       "net.sf.jopt-simple"    % "jopt-simple"  % "3.2",
-      "org.slf4j"             % "slf4j-simple" % "1.6.4"
+      "org.slf4j"             % "slf4j-simple" % "1.6.4" % "test"
     ),
     // The issue is going from log4j 1.2.14 to 1.2.15, the developers added some features which required
     // some dependencies on various sun and javax packages.

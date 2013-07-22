@@ -1,0 +1,57 @@
+qmon-kafka (0.8.0~qmon4) unstable; urgency=low
+
+  * Merged with upstream
+  * KAFKA-1068 OfflinePartitionCount metrics may be incorrect after the controller failover; reviewed by Neha Narkhede and Guozhang Wang
+  * KAFKA-939 sbt publish-local fails due to invalid javac flags passed to javadoc patch by Frank Grimes reviewed by Joe Stein
+  * kafka-946; Kafka Hadoop Consumer fails when verifying message checksum; patched by Sam Meder; reviewed by Jun Rao
+  * KAFKA-1062 Reading topic metadata from zookeeper leads to incompatible ordering of partition list; reviewed by Neha and Guozhang
+  * KAFKA-1053 Kafka patch review tool that integrates JIRA and reviewboard; reviewed by Joel Koshy, Swapnil Ghike and Guozhang Wang
+  * KAFKA-1030 Addition of partitions requires bouncing all the consumers of that topic; reviewed by Neha, Swapnil, Joel
+  * KAFKA-1038; fetch response should use empty messageset instead of null when handling errors; patched by Jun Rao; reviewed by Neha Narkhede
+  * KAFKA-955 (followup patch) After a leader change, messages sent with ack=0 are lost; reviewed by Neha Narkhede and Jun Rao
+  * KAFKA-1046 Added support for Scala 2.10 builds while maintaining compatibility with 2.8.x; reviewed by Neha and Jun
+  * kafka-1035; Add message-send-max-retries and retry-backoff-ms options to console producer; patched by Rajasekar Elango; reviewed by Guaozhang Wang and Jun Rao
+  * kafka-937; delta patch; ConsumerFetcherThread can deadlock; patched by Jun Rao; reviewed by Joel Koshy
+  * KAFKA-955 After a leader change, messages sent with ack=0 are lost; reviewed by Jay Kreps, Neha Narkhede and Jun Rao
+  * kafka-1031; Little modification to the stop script to be able to kill the proper process; patched by Vladislav Pernin; reviewed by Jun Rao
+  * KAFKA-990 Fix ReassignPartitionCommand and improve usability; reviewed by Neha, Jun, Joel and Guozhang
+  * KAFKA-1029 Zookeeper leader election stuck in ephemeral node retry loop; reviewed by Neha and Guozhang
+  * kafka-1017; High number of open file handles in 0.8 producer; patched by Swapnil Ghike; reviewed by Neha Narkhede and Jun Rao
+  * kafka-649; patch v5; Cleanup log4j logging; patched by Guozhang Wang; reviewed by Jun Rao
+  * kafka-992; follow-up patch; Double Check on Broker Registration to Avoid False NodeExist Exception; patched by Guozhang Wang; reviewed by Neha Narkhede and Jun Rao
+  * kafka-1010; Concurrency issue in getCluster() causes rebalance failure and dead consumer; patched by Sam Meder; reviewed by Jun Rao
+  * KAFKA-992 followup: Fix zookeeper de-registration bug for controller and consumer; reviewed by Neha Narkhede
+  * KAFKA-992 follow up: Fix the zookeeper de-registration issue for controller and consumer; reviewed by Neha Narkhede
+  * kafka-1003; ConsumerFetcherManager should pass clientId as metricsPrefix to AbstractFetcherManager; patched by Swapnil Ghike; reviewed by Jun Rao
+  * KAFKA-999 Controlled shutdown never succeeds until the broker is killed; reviewed by Neha Narkhede
+  * kafka-989; Race condition shutting down high-level consumer results in spinning background thread; patched by Phil Hargett; reviewed by Jun Rao
+  * KAFKA-992 Double Check on Broker Registration to Avoid False NodeExist Exception; reviewed by Neha Narkhede and Swapnil Ghike
+  * KAFKA-915; Mirror maker system tests should wait for topics to be created. (This patch is a work-around until KAFKA-956 is resolved.); patched by John Fung; reviewed by Joel Koshy.
+
+ -- Andrey Stepachev <octo47@gmail.com>  Mon, 03 Oct 2013 12:14:00 +0400
+
+qmon-kafka (0.8.0~qmon3) unstable; urgency=low
+
+  * Merged with upstream
+  * kafka-994; High level consumer doesn't throw an exception when the message it is trying to fetch exceeds the configured fetch size; patched by Sam M
+  * KAFKA-991; Rename config queue size to queue bytes in hadoop producer; patched by Swapnil Ghike, reviewed by Joel Koshy.
+  * KAFKA-991; Reduce the queue size in hadoop producer; patched by Swapnil Ghike, reviewed by Jay Kreps and Joel Koshy.
+  * kafka-959; DefaultEventHandler can send more produce requests than necesary; patched by Guozhanh Wang; reviewed by Jun Rao
+  * KAFKA-983; Expose MirrorMaker cleanShutdown method. Patched by Swapnil Ghike.
+  * KAFKA-957; MirrorMaker needs to preserve ordering for keyed messages from source cluster; patched by Guozhang Wang, reviewed by Joel Koshy
+  * KAFKA-987 Avoid checkpointing offsets in Kafka consumer that have not changed since the last commit; reviewed by Neha Narkhede
+  * kafka-347; change number of partitions of a topic online; patched by Sriram Subramanian; reviewed by Neha Narkehede, Guozhang Wang, Joel Koshy and J
+
+ -- Andrey Stepachev <octo47@gmail.com>  Mon, 19 Aug 2013 12:43:00 +0400
+
+qmon-kafka (0.8.0~qmon2) unstable; urgency=low
+
+  * Various debian packaging fixes
+
+ -- Nikolay Bryskin <devel.niks@gmail.com>  Mon, 05 Aug 2013 17:22:35 +0400
+
+qmon-kafka (0.8.0~qmon1) unstable; urgency=low
+
+  * Initial debian release.
+
+ -- Andrey Stepachev <octo47@gmail.com>  Mon, 5 Aug 2013 9:38:01 +0400

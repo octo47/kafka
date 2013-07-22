@@ -11,7 +11,7 @@ resolvers ++= Seq(
 libraryDependencies <+= scalaVersion("org.scala-lang" % "scala-compiler" % _ )
 
 libraryDependencies ++= Seq(
-  "org.apache.zookeeper"  % "zookeeper"   % "3.3.4",
+  "org.apache.zookeeper"  % "zookeeper"   % "3.4.5",
   "com.101tec"            % "zkclient"     % "0.3",
   "org.xerial.snappy"     % "snappy-java" % "1.0.4.1",
   "com.yammer.metrics"    % "metrics-core" % "2.2.0",
