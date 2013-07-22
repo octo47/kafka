@@ -41,8 +41,8 @@ object KafkaBuild extends Build {
   </license>
 </licenses>,
     scalacOptions ++= Seq("-deprecation", "-unchecked", "-g:none"),
-    crossScalaVersions := Seq("2.8.0","2.8.2", "2.9.1", "2.9.2"),
-    scalaVersion := "2.8.0",
+    crossScalaVersions := Seq("2.8.2", "2.9.1", "2.9.2", "2.9.3", "2.10.2"),
+    scalaVersion := "2.10.2",
     version := "0.8.0-beta1",
     publishTo := Some("Apache Maven Repo" at "https://repository.apache.org/service/local/staging/deploy/maven2"),
     credentials += Credentials(Path.userHome / ".m2" / ".credentials"),

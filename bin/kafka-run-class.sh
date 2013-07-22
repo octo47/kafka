@@ -22,10 +22,10 @@ fi
 
 base_dir=$(dirname $0)/..
 
-SCALA_VERSION=2.8.0
+SCALA_VERSION=2.10
 
 # assume all dependencies have been packaged into one jar with sbt-assembly's task "assembly-package-dependency"
-for file in $base_dir/core/target/scala-2.8.0/*.jar;
+for file in $base_dir/core/target/scala-2.10/*.jar;
 do
   CLASSPATH=$CLASSPATH:$file
 done
@@ -45,6 +45,8 @@ for file in $base_dir/kafka*.jar;
 do
   CLASSPATH=$CLASSPATH:$file
 done
+
+echo $CLASSPATH
 
 if [ -z "$KAFKA_JMX_OPTS" ]; then
   KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false "

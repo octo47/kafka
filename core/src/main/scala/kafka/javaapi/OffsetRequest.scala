@@ -28,7 +28,7 @@ class OffsetRequest(requestInfo: java.util.Map[TopicAndPartition, PartitionOffse
                     clientId: String) {
 
   val underlying = {
-    val scalaMap = JavaConversions.asMap(requestInfo).toMap
+    val scalaMap = JavaConversions.asScalaMap(requestInfo).toMap
     kafka.api.OffsetRequest(
       requestInfo = scalaMap,
       versionId = versionId,
