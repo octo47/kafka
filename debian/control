@@ -1,0 +1,11 @@
+Source: qmon-kafka
+Section: yandex
+Priority: optional
+Build-Depends: debhelper (>= 7), jdk (>= 1.6) | yandex-jdk6 | yandex-jdk7
+Maintainer: Andrey Stepachev <octo47@gmail.com>
+
+Package: qmon-kafka
+Architecture: all
+Depends: ${shlibs:Depends}, jdk (>= 1.6) | yandex-jdk6 | yandex-jdk7
+Description: QMon version of kafka
+

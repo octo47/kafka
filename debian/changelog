@@ -1,0 +1,5 @@
+qmon-kafka (0.8.0-qmon1) unstable; urgency=low
+
+  * Initial debian release.
+
+ -- Andrey Stepachev <octo@yandex-team.ru>  Mon, 5 Aug 2013 9:38:01 +0400
