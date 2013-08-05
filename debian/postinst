@@ -20,11 +20,9 @@ set -e
 
 case "$1" in
     configure)
-        if ! getent passwd kafka >/dev/null; then
-            adduser --quiet --system --no-create-home --home /var/log/qmon-kafka --shell /usr/sbin/nologin kafka
+        if ! getent passwd qmon-kafka >/dev/null; then
+            adduser --quiet --system --home /var/log/qmon-kafka --shell /usr/sbin/nologin qmon-kafka
         fi
-
-	chown -R kafka:kafka /var/log/qmon-kafka
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
