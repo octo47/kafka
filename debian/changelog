@@ -1,5 +1,11 @@
-qmon-kafka (0.8.0-qmon1) unstable; urgency=low
+qmon-kafka (0.8.0~qmon2) unstable; urgency=low
+
+  * Various debian packaging fixes
+
+ -- Nikolay Bryskin <devel.niks@gmail.com>  Mon, 05 Aug 2013 17:22:35 +0400
+
+qmon-kafka (0.8.0~qmon1) unstable; urgency=low
 
   * Initial debian release.
 
- -- Andrey Stepachev <octo@yandex-team.ru>  Mon, 5 Aug 2013 9:38:01 +0400
+ -- Andrey Stepachev <octo47@gmail.com>  Mon, 5 Aug 2013 9:38:01 +0400
