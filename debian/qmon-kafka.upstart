@@ -1,3 +1,3 @@
 description "QMon Kafka Server"
 setuid kafka
-exec /usr/share/qmon-kafka/bin/zookeeper-server-start.sh /usr/share/qmon-kafka/config/zookeeper.properties
+exec /usr/share/qmon-kafka/bin/kafka-server-start.sh /usr/share/qmon-kafka/config/server.properties
