@@ -1,29 +1,21 @@
 #! /usr/bin/make -f
 
-.PHONY: binary build clean
+export DH_OPTIONS
 
 sbt=./sbt
 sbt_options=-Dsbt.global.base=debian/.sbt/sbtboot -Dsbt.boot.directory=debian/.sbt/boot -Dsbt.ivy.home=debian/.sbt/ivy ++2.10.1
 
-install:
+%:
+	dh $@
+
+override_dh_auto_install:
 	@set -e;\
                 ${sbt} ${sbt_options} update;\
                 ${sbt} ${sbt_options} package;\
                 ${sbt} ${sbt_options} assembly-package-dependency;
-	dh_install --list-missing
-	dh_installdeb
-	dh_shlibdeps
-	dh_shlibdeps -p qmon-kafka
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+	dh_auto_install
 
-binary: install
-
-build: clean
-	dh_testdir
-
-clean:
-	dh_clean
+override_dh_auto_clean:
+	dh_auto_clean
 	rm -rf __build
 	${sbt} ${sbt_options} clean
