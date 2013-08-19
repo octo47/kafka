@@ -1,3 +1,17 @@
+qmon-kafka (0.8.0~qmon3) unstable; urgency=low
+
+  * Merged with upstream
+  * kafka-994; High level consumer doesn't throw an exception when the message it is trying to fetch exceeds the configured fetch size; patched by Sam M
+  * KAFKA-991; Rename config queue size to queue bytes in hadoop producer; patched by Swapnil Ghike, reviewed by Joel Koshy.
+  * KAFKA-991; Reduce the queue size in hadoop producer; patched by Swapnil Ghike, reviewed by Jay Kreps and Joel Koshy.
+  * kafka-959; DefaultEventHandler can send more produce requests than necesary; patched by Guozhanh Wang; reviewed by Jun Rao
+  * KAFKA-983; Expose MirrorMaker cleanShutdown method. Patched by Swapnil Ghike.
+  * KAFKA-957; MirrorMaker needs to preserve ordering for keyed messages from source cluster; patched by Guozhang Wang, reviewed by Joel Koshy
+  * KAFKA-987 Avoid checkpointing offsets in Kafka consumer that have not changed since the last commit; reviewed by Neha Narkhede
+  * kafka-347; change number of partitions of a topic online; patched by Sriram Subramanian; reviewed by Neha Narkehede, Guozhang Wang, Joel Koshy and J
+
+ -- Andrey Stepachev <octo47@gmail.com>  Mon, 19 Aug 2013 12:43:00 +0400
+
 qmon-kafka (0.8.0~qmon2) unstable; urgency=low
 
   * Various debian packaging fixes
