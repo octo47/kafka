@@ -40,7 +40,7 @@ object KafkaBuild extends Build {
     <distribution>repo</distribution>
   </license>
 </licenses>,
-    scalacOptions ++= Seq("-deprecation", "-unchecked", "-g:none"),
+    scalacOptions ++= Seq("-deprecation", "-unchecked", "-g:source"),
     crossScalaVersions := Seq("2.8.2", "2.9.1", "2.9.2", "2.9.3", "2.10.2"),
     scalaVersion := "2.10.2",
     version := "0.8.0-beta1-qmon",
