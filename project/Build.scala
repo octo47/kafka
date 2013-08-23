@@ -44,7 +44,7 @@ object KafkaBuild extends Build {
     crossScalaVersions := Seq("2.8.2", "2.9.1", "2.9.2", "2.9.3", "2.10.2"),
     scalaVersion := "2.10.2",
     version := "0.8.0-beta1-qmon",
-    publishTo := Some("Apache Maven Repo" at "https://repository.apache.org/service/local/staging/deploy/maven2"),
+    publishTo := Some(Resolver.file("octo47.github.com", file(Path.userHome + "/Projects/github/octo47.github.com/repo"))),
     credentials += Credentials(Path.userHome / ".m2" / ".credentials"),
     buildNumber := System.getProperty("build.number", ""),
     version <<= (buildNumber, version)  { (build, version)  => if (build == "") version else version + "+" + build},
