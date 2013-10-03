@@ -1,4 +1,4 @@
-qmon-kafka (0.8.0~qmon4) unstable; urgency=low
+qmon-kafka (0.8.0~qmon5) unstable; urgency=low
 
   * Merged with upstream
   * KAFKA-1068 OfflinePartitionCount metrics may be incorrect after the controller failover; reviewed by Neha Narkhede and Guozhang Wang

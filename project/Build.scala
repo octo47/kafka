@@ -44,7 +44,7 @@ object KafkaBuild extends Build {
     crossScalaVersions := Seq("2.8.0","2.8.2", "2.9.1", "2.9.2", "2.10.1"),
     excludeFilter in unmanagedSources <<= scalaVersion(v => if (v.startsWith("2.8")) "*_2.9+.scala" else "*_2.8.scala"),
     scalaVersion := "2.10.2",
-    version := "0.8.0-beta1-qmon4",
+    version := "0.8.0-beta1-qmon5",
     publishMavenStyle := false,
     publishTo := Some(Resolver.file("octo47.github.com", file(Path.userHome + "/Projects/github/octo47.github.com/repo"))),
     publishArtifact in Test := true,
