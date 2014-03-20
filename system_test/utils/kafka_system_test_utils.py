@@ -1010,6 +1010,7 @@ def start_producer_in_thread(testcaseEnv, entityConfigList, producerConfig, kafk
             cmdList = ["ssh " + host,
                        "'JAVA_HOME=" + javaHome,
                        "JMX_PORT=" + jmxPort,
+                       "KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:%s/config/test-log4j.properties" % kafkaHome,
                        kafkaRunClassBin + " kafka.perf.ProducerPerformance",
                        "--broker-list " + brokerListStr,
                        "--initial-message-id " + str(initMsgId),
@@ -1045,6 +1046,7 @@ def start_producer_in_thread(testcaseEnv, entityConfigList, producerConfig, kafk
                 cmdList = ["ssh " + host,
                        "'JAVA_HOME=" + javaHome,
                        "JMX_PORT=" + jmxPort,
+                       "KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:%s/config/test-log4j.properties" % kafkaHome,
                        kafkaRunClassBin + " kafka.perf.ProducerPerformance",
                        "--brokerinfo " + brokerInfoStr,
                        "--initial-message-id " + str(initMsgId),
@@ -1126,7 +1128,7 @@ def create_topic(systemTestEnv, testcaseEnv):
         zkHost          = system_test_utils.get_data_by_lookup_keyval(clusterEntityConfigDictList, "role", "zookeeper", "hostname")
         kafkaHome       = system_test_utils.get_data_by_lookup_keyval(clusterEntityConfigDictList, "entity_id", zkEntityId, "kafka_home")
         javaHome        = system_test_utils.get_data_by_lookup_keyval(clusterEntityConfigDictList, "entity_id", zkEntityId, "java_home")
-        createTopicBin  = kafkaHome + "/bin/kafka-create-topic.sh"
+        createTopicBin  = kafkaHome + "/bin/kafka-topics.sh --create"
 
         logger.debug("zkEntityId     : " + zkEntityId, extra=d)
         logger.debug("createTopicBin : " + createTopicBin, extra=d)
@@ -1153,8 +1155,8 @@ def create_topic(systemTestEnv, testcaseEnv):
                        createTopicBin,
                        " --topic "     + topic,
                        " --zookeeper " + zkConnectStr,
-                       " --replica "   + testcaseEnv.testcaseArgumentsDict["replica_factor"],
-                       " --partition " + testcaseEnv.testcaseArgumentsDict["num_partition"] + " >> ",
+                       " --replication-factor "   + testcaseEnv.testcaseArgumentsDict["replica_factor"],
+                       " --partitions " + testcaseEnv.testcaseArgumentsDict["num_partition"] + " >> ",
                        testcaseBaseDir + "/logs/create_source_cluster_topic.log'"]
     
             cmdStr = " ".join(cmdList)
@@ -1877,10 +1879,16 @@ def get_controller_attributes(systemTestEnv, testcaseEnv):
     logger.debug("executing command [" + cmdStr + "]", extra=d)
     subproc = system_test_utils.sys_call_return_subproc(cmdStr)
     for line in subproc.stdout.readlines():
-        brokerid = line.rstrip('\n')
-        controllerDict["brokerid"]  = brokerid
-        controllerDict["entity_id"] = system_test_utils.get_data_by_lookup_keyval(
-                                          tcConfigsList, "broker.id", brokerid, "entity_id")
+        if "brokerid" in line:
+            json_str  = line.rstrip('\n')
+            json_data = json.loads(json_str)
+            brokerid  = str(json_data["brokerid"])
+            controllerDict["brokerid"]  = brokerid
+            controllerDict["entity_id"] = system_test_utils.get_data_by_lookup_keyval(
+                                              tcConfigsList, "broker.id", brokerid, "entity_id")
+        else:
+            pass
+
     return controllerDict
 
 def getMinCommonStartingOffset(systemTestEnv, testcaseEnv, clusterName="source"):

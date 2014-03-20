@@ -1,3 +1,213 @@
+qmon-kafka (0.8.1~qmon8) unstable; urgency=low
+
+  * Merged with upstream
+  * KAFKA-1288 add enclosing dir in release tar gz patch by Jun Rao, reviewed by Neha Narkhede
+  * KAFKA-1289 Misc. nitpicks in log cleaner for new 0.8.1 features patch by Jay Kreps, reviewed by Sriram Subramanian and Jun Rao
+  * auto rebalance last commit
+  * kafka-1271; controller logs exceptions during ZK session expiration; patched by Jun Rao; reviewed by Guozhang Wang and Jay kreps
+  * KAFKA-1254 remove vestigial sbt patch by Joe Stein; reviewed by Jun Rao
+  * KAFKA-1274 gradle.properties needs the variables used in the build.gradle patch by Joe Stein; Reviewed by Jun Rao
+  * KAFKA-1245 the jar files and pom are not being signed so nexus is failing to publish them patch by Joe Stein; Reviewed by Jun Rao
+  * KAFKA-1263 Snazzy up the README markdown for better visibility on github; patched by Joe Stein; reviewed by Neha Narkhede
+  * kafka-1244,kafka-1246,kafka-1249; various gradle issues for release; patched by Jun Rao; reviewed by Neha Narkhede
+  * KAFKA-1158 run rat is not needed this is documented now in the release not part of the server running
+  * KAFKA-330 Delete topic followup - more tests and Joel's review comments
+  * trivial fix to add missing license header using .gradlew licenseFormatMain and ./gradlew licenseFormatTest; patched by Jun Rao
+  * kafka-1171; Gradle build for Kafka; patched by David Arthur, Joe Stein, Chris Freeman and Jun Rao; reviewed by Guozhang Wang, Joel Koshy and Neha Narkhede
+  * Minor fix for delete topic
+  * kafka-1232; make TopicCommand more consistent; patched by Jun Rao; reviewed by Guozhang Wang and Neha Narkhede
+  * KAFKA-330 Delete topic; reviewed by Jun Rao, Guozhang Wang and Joel Koshy
+  * Rename client package from kafka.* to org.apache.kafka.*
+  * TRIVIAL: Fix misc. numerical issues in histogram.
+  * Implement a few of the API suggestions from the mailing list.
+  * trivial typo fix; patched by Moritz Schwörer; reviewed by Jun Rao
+  * KAFKA-1164 kafka should depend on snappy 1.0.5 (instead of 1.0.4.1); reviewed by Neha Narkhede
+  * kafka-1228; Socket Leak on ReplicaFetcherThread; patched by Ahmy Yulrizka; reviewed by Jun Rao
+  * KAFKA-1184 High-Level Consumer: expose fetcher threads number as a parameter; reviewed by Neha Narkhede
+  * KAFKA-1227 New producer!
+  * KAFKA-1055 BrokerTopicStats should distinguish between messages received and messages actually appended (i.e., not dropped for various reasons).
+  * kafka-1214; Support arguments to zookeeper-shell.sh script; patched by Philp K. Warren; reviewed by Jun Rao
+  * kafka-1205; README in examples not update; patched by Ailing Zhang; reviewed by Jun Rao
+  * kafka-1208; Update system test still to use kafka-topics instead of kafka-create-topics shell; patched by Guozhang Wang; reviewed by Jun Rao
+  * kafka-1202; optimize ZK access in KafkaController; also incorporating fixes in kafka-1020; patched by Jun Rao and Guozhang Wang; reviewed by Neha Narkhede and Joel Koshy
+  * KAFKA-1200 inconsistent log levels when consumed offset is reset patch by Dima Pekar reviewed by Joe Stein
+  * KAFKA-1199 Add a reduced access log level; reviewed by Guozhang Wang and Jun Rao
+  * kafka-1074; Reassign partitions should delete the old replicas from disk; patched by Jun Rao; reviewed by Jay Kreps, Neha Narkhede and Guozhang Wang
+  * kafka-1198; NullPointerException in describe topic; patched by Guozhang Wang; reviewed by Jun Rao
+  * KAFKA-1187 Controller should retry connecting to brokers to send state change requests; reviewed by Jun Rao and Guozhang Wang
+  * Rebased from trunk to resolve conflicts between KAFKA-1185 and KAFKA-930
+  * KAFKA-1185 Improve leader elector module to have a resign API; reviewed by Guozhang Wang and Jun Rao
+  * KAFKA-930 leader auto rebalance feature; reviewed by Neha Narkhede, Jun Rao and Guozhang Wang
+  * KAFKA-1139 Topic data change handling callback should not call syncedRebalance directly; reviewed by Guozhang Wang and Jun Rao
+  * KAFKA-1134 onControllerFailover function should be synchronized with other functions; reviewed by Neha Narkhede
+  * KAFKA-1142 Patch review tool should take diff with origin from last divergent point; reviewed by Neha Narkhede
+  * KAFKA-1178 Replica fetcher thread dies while becoming follower; reviewed by Jun Rao and Guozhang Wang
+  * KAFKA-1170 ISR can be inconsistent during partition reassignment for low throughput partitions; reviewed by Jun Rao and Guozhang Wang
+  * KAFKA-1167 Improve the kafka-topics tool to list the topics with overridden configs; reviewed by Jun Rao
+  * kafka-1169; missing synchronization in access to leaderCache in KafkaApis; patched by Jun Rao; reviewed by Neha Narkhede
+  * kafka-1168; OfflinePartitionCount in JMX can be incorrect during controlled shutdown; patched by Jun Rao; reviewed by Swapnil Ghike
+  * minor fix for KAFKA-1152; ReplicaManager's handling of the leaderAndIsrRequest should gracefully handle leader == -1; patched by Swapnil Ghike; reviewed by Jun Rao
+  * KAFKA-1156 Improve reassignment tool to output the existing assignment to facilitate rollbacks; reviewed by Jun Rao
+  * kafka-1157; Clean up Per-topic Configuration from Kafka properties; patched by Guozhang Wang; reviewed by Jun Rao
+  * kafka-1154; replicas may not have consistent data after becoming follower; patched by Jun Rao; reviewed by Guozhang Wang and Neha Narkhede
+  * kafka-1152; ReplicaManager's handling of the leaderAndIsrRequest should gracefully handle leader == -1; patched by Swapnil Ghike; reviewed by Jun Rao
+  * kafka-1140; Move the decoding logic from ConsumerIterator.makeNext to next; patched by Guozhang Wang; reviewed by Jun Rao
+  * Update description of num.partitions config in sample server properties - issue reported by Vaibhav Puranik
+  * recommit kafka-1112 since it's inadvently reverted in the commit of kafka-1135
+  * KAFKA-1133 LICENSE and NOTICE files need to get into META-INF when jars are built before they're signed for publishing to maven reviewed by Joel Koshy
+  * kafka-1103; Consumer uses two zkclients; patched by Guozhang Wang; reviewed by Joel Koshy and Jun Rao
+  * kafka-1136; Add subAppend in Log4jAppender for generic usage; patched by Jie Huang; reviewed by Joel Koshy and Jun Rao
+  * kafka-933; Hadoop example running DataGenerator causes kafka.message.Message cannot be cast to [B exception; patched by drunkedcat; reviewed by Jun Rao
+  * fix for scala 2.10.1 compilation issued introduced in kafka-1117
+  * KAFKA-1131 copy license and notice to the release files, reviewed by David Arthur
+  * kafka-1135; Code cleanup - use Json.encode() to write json data to zk; patched by Swapnil Ghike; reviewed by Neha Narkhede, Guozhang Wang and Jun Rao
+  * kafka-1117; tool for checking the consistency among replicas; patched by Jun Rao; reviewed by Neha Narkhede, Joel Koshy, Swapnil Ghike, Guozhang Wang
+  * kafka-1127; kafka and zookeeper server should start in daemon mode and log to correct position; patched by Raymond Liu; reviewed by Jun Rao
+  * KAFKA-1112; broker can not start itself after kafka is killed with -9; patched by Jay Kreps and Jun Rao; reviewed by Jay Kreps, Neha Narkhede and Guozhang Wang
+  * KAFKA-1119 Kafka 0.8.1 overwrites previous per topic config changes; reviewed by Joel Koshy, Guozhang Wang, Swapnil Ghike, Jay Kreps
+  * KAFKA-1126 Remove the DISCLAIMER it is left over from incubation reviewed by Neha
+  * KAFKA-1121 DumpLogSegments tool should print absolute file name to report inconsistencies; reviewed by Neha Narkhede and Guozhang Wang
+  * Minor logging improvement
+  * KAFKA-1097 Race condition while reassigning low throughput partition leads to incorrect ISR information in zookeeper; reviewed by Jun Rao, Guozhang Wang
+  * KAFKA-1113 log.cleanup.interval.mins property should be renamed; Trivial patch, no review
+  * KAFKA-1107 Follow up review cleanup comments
+  * KAFKA-1107 Broker unnecessarily recovers all logs when upgrading from 0.8 to 0.8.1; reviewed by Jay Kreps and Guozhang Wang
+  * kafka-1092; Add server config parameter to separate bind address and ZK hostname; patched by Roger Hoover; reviewed by Jun Rao
+  * KAFKA-1060 Break-down sendTime into responseQueueTime and the real sendTime; reviewed by Neha Narkhede and Jun Rao
+  * KAFKA-1001; Handle follower transition in batch; patched by Guozhang Wang; reviewed by Jun Rao
+  * kafka-918; Change log.retention.hours to be log.retention.mins; patched by Alin Vasile; reviewed by Jun Rao
+  * KAFKA-1098 Fix failing test in LogCleaner.
+  * KAFKA-1042 follow up compilation fix; reviewed by Neha Narkhede
+  * KAFKA-1094 Configure reviewboard url in kafka-patch-review tool; reviewed by Neha Narkhede
+  * KAFKA-1042 logSegments(from, to) Misses first segment.
+  * kafka-1090; testPipelinedRequestOrdering has transient failures; patched by Jun Rao; reviewed by Joel Koshy, Guozhang Wang, and Neha Narkhede
+  * kafka-1091; full topic list can be read from metadata cache in the broker instead of ZK; patched by Jun Rao; reviewed by Joel Koshy, Guozhang Wang, Swapnil Ghike, and Neha Narkhede
+  * KAFKA-1086 Improve GetOffsetShell to find metadata automatically; reviewed by Jun Rao and Joel Koshy
+  * KAFKA-1089; Fix run-class and log4j for migration tool system test; reviewed by Jun Rao
+  * KAFKA-1036 Close checkpoint file before renaming it for Windows compatibility.
+  * KAFKA-1008 Lock around unmap on windows.
+  * KAFKA-1086 Improve GetOffsetShell to find metadata automatically; reviewed by Jun Rao
+  * kafka-1084; Validate properties for custom serializers; patched by Francois Saint-Jacquese; reviewed by Jun Rao
+  * KAFKA-1087 Empty topic list causes consumer to fetch metadata of all topics; reviewed by Guozhang Wang and Neha Narkhede
+  * KAFKA-1081 Clean up shell scripts. Removed re-run of failed command. Use exec instead of subprocess execution.
+  * KAFKA-1018 tidy up the pom, 0.8.0 release, build the test jars now too
+  * trivial change to remove unused command bin/kafka-add-partitions.sh
+  * kafka-1052; integrate add-partitions command into topicCommand; patched by Sriram Subramanian; reviewed by Jun Rao
+  * Merge remote-tracking branch 'origin/0.8' into trunk
+  * kafka-954; tidy up README file for better general availability; patched by Jun Rao; reviewed by Joe Stein and Neha Narkhede
+  * kafka-1078; Update System Test to handle controller data returned by ZK; patched by John Fung; reviewed by Jun Rao
+  * kafka-1069; MBean kafka.cluster.Partition report wrong UnderReplicated status; patched by Jun Rao; reviewed by Neha Narkhede
+  * Merge remote branch 'origin/0.8' into trunk
+  * KAFKA-1075; Consumer will not rebalance upon topic partition change; reviewed by Neha Narkhede and Jun Rao
+  * trivial follow-up patch for kafka-1073 to fix unit tests; patched by Jun Rao
+  * kafka-1073; CheckReassignmentStatus is broken; patched by Jun Rao; reviewed by Guozhang Wang, Swapnil Ghike and Neha Narkhede
+  * kafka-1076; system tests in 0.8 are broken due to wrong log4j config; patched by Joel Koshy; reviewed by Jay Kreps and Jun Rao
+  * KAFKA-1071; The random partition selected in DefaultEventHandler is not random across producer instances; reviewed by Neha Narkhede and Jun Rao
+  * KAFKA-1053 Kafka patch review tool that integrates JIRA and reviewboard; reviewed by Joel Koshy, Swapnil Ghike and Guozhang Wang
+  * Trivial commit: Fix whitespace in Utils.rm.
+  * merge from 0.8 c12d2ea9e5b4bdcf9aeb07c89c69553a9f270c82 to trunk
+  * KAFKA-1046 New files
+  * KAFKA-1046 Added support for Scala 2.10 builds while maintaining compatibility with 2.8.x; reviewed by Neha and Jun
+  * merge from 0.8 da4512174b6f7c395ffe053a86d2c6bb19d2538a and resolve conflicts
+  * KAFKA-1009 DumpLogSegments tool should return error on non-existing files; reviewed by Neha Narkhede
+  * KAFKA-615 fsync asynchronous from log roll. Patch reviewed by Jun and Sriram.
+  * KAFKA-985 integer overflow in log time configuration values. Patch from Frank Fejes.
+  * KAFKA-995 Ensure that replica fetch size is > max message size on server.
+  * KAFKA-925 Add a partition key that overrides the message's stored key. Patch reviewed by Joel.
+  * KAFKA-852, remove clientId from Offset{Fetch,Commit}Response. Reviewed by Jay.
+  * kafka-965; merge c39d37e9dd97bf2462ffbd1a96c0b2cb05034bae from 0.8 to trunk; patched by Jun Rao; reviewed by Jay Kreps
+  * Merge branch 'trunk' of https://git-wip-us.apache.org/repos/asf/kafka into trunk
+  * kafka-896; merge 0.8 (988d4d8e65a14390abd748318a64e281e4a37c19) to trunk; patched by Jun Rao; reviewed by Jay Kreps
+  * kafka-891; NullPointerException in ConsoleConsumer; patched by Colin B.; reviewed by Neha Narkhede and Jun Rao
+  * kafka-823; merge 0.8 (51421fcc0111031bb77f779a6f6c00520d526a34) to trunk; patched by Jun Rao; reviewed by Jay Kreps
+  * KAFKA-739 Handle null message payloads in messages and in the log cleaner. Reviewed by Jun and Neha.
+  * KAFKA-554 Dynamic per-topic configuration. This patch adds a mechanism for storing per-topic configurations in zookeeper and dynamically making config changes across the cluster. Reviewed by Neha and Jun.
+  * merge from 0.8 and resolve conflicts
+  * KAFKA-759 Commit/FetchOffset APIs should not return versionId; reviewed by Neha Narkhede
+  * KAFKA-771 NPE in handleOffsetCommitRequest; reviewed by Neha Narkhede
+  * KAFKA-631 Implement a log cleaner for Kafka. Reviewed by Neha.
+  * merge 0.8 to trunk and resolve conflicts
+  * Merge remote branch 'origin/0.8' into trunk
+  * merge from 0.8 and resolve conflict in Log
+  * Merge remote branch 'origin/0.8' into trunk
+  * Merge remote branch 'origin/0.8' into trunk
+  * Merge remote branch 'origin/0.8' into trunk
+  * merge from 0.8 and resolve conflicts
+  * KAFKA-133 publish kafka to maven - patch by Maxime Brugidou with updates for depen by Otis Gospodnetic, reviewed by Joe Stein
+  * fixed incubation url
+  * KAFKA-657 Change property name to offset.metadata.max.bytes for consistency.
+  * KAFKA-657 Add APIs for the consumer to commit and fetch offsets on the broker.
+  * Merge remote branch 'origin/0.8' into trunk
+  * Merge branch '0.8' into trunk
+  * KAFKA-374 Move off the default java crc implementation to the crc code borrowed from Hadoop. Patch reviewed by Joe.
+  * KAFKA-636 Make log segment delete an asynchronous background action done by the scheduler. Patch reviewed by Jun and Neha.
+  * KAFKA-597 Refactor scheduler. Fixes a couple of bugs, and adds the ability to mock scheduled tasks.
+  * KAFKA-521 Missing files on last commit.
+  * KAFKA-521 Refactor the log subsystem. Patch reviewed by Neha.
+  * Kafka has become a TLP
+  * copy branch 0.8 to trunk
+  * Fix wildcard consumption to work with greater than one stream; KAFKA-550; patched by Joel Koshy; reviewed by Jun Rao and Neha Narkhede.
+  * The ConsumerStats MBean name should include the groupid; patched by Michael Tamm; reviewed by Jun Rao; kafka-547
+  * ConsumerOffsetChecker now works with hostnames (in addition to IP) in the brokers/ids zk path; KAFKA-549; patched by Bob Cotton; reviewed by Joel Koshy
+  * KAFKA-538 missing apache license header in sbt and util.h
+  * KAFKA-533 changes to NOTICE and LICENSE related to KAFKA-534 removing client libraries from repo
+  * KAFKA-534 remove client library directory
+  * TopicCount.constructTopicCount isn't thread-safe; patched by Jun Rao; reviewed by Joel Koshy; KAFKA-379
+  * Handle topic names with / on Kafka server; patched by Swapnil Ghike; reviewed by Jay Kreps and Jun Rao; kafka-495
+  * Message size not checked at the server (patch v3); patched by Swapnil Ghike; reviewed by Jun Rao; KAFKA-469
+  * Require values in Utils.getTopic* methods to be positive; patched by Swapnil Ghike; reviewed by Jun Rao; KAFKA-481
+  * Expose JMX operation to set logger level dynamically; patched by Jun Rao; reviewed by Jay Kreps; KAFKA-429
+  * Time based log segment rollout; patched by Swapnil Ghike; reviewed by Jun Rao, Neha Narkhede; KAFKA-475
+  * message size not checked at the server; patched by Swapnil Ghike; reviewed by Jun Rao, Neha Narkhede; KAFKA-469
+  * KAFKA-373 Fix trunk broker failure test to work with mirror maker; patched by John Fung; reviewed by Joel Koshy
+  * KAFKA-368 use the pig core jar from maven instead of distributing it patch by Joe Stein reviewed by Jun Rao and Neha Narkhede
+  * add jmx beans in broker to track # bytes in consumer; patched by Jun Rao; reviewed by Joel Koshy; KAFKA-336
+  * KAFKA-365 change copyright in NOTICE to current year, reviewed by Jun Rao
+  * Minor fix: Turning on TCP NODELAY in the Simple Consumer. This fix has a significant impact on single fetch request performance from a latency standpoint
+  * Mirroring should use multiple producers; add producer retries to DefaultEventHandler; patched by Joel Koshy; reviewed by Jun Rao; KAFKA-332
+  * KAFKA-320 testZKSendWithDeadBroker fails intermittently due to ZKNodeExistsException; patched by nehanarkhede; reviewed by junrao and prashanth menon
+  * Separate out Kafka mirroring into a stand-alone app; patched by Joel Koshy; reviewed by Jun Rao and Neha Narkhede; KAFKA-249
+  * enable shallow iterator in ByteBufferMessageSet to allow mirroing data without decompression; patched by Jun Rao; reviewed by Joel Koshy; KAFKA-315
+  * CallbackHandler.afterDequeuingExistingData is not called during event queue timeout; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-326
+  * KAFKA-309 Bug in FileMessageSet's append API can corrupt on disk log; patched by nehanarkhede; reviewed by junrao
+  * KAFKA-310 Incomplete message set validation checks in Log's append API can corrupt on disk log segment; patched by nehanarkhede; reviewed by junrao
+  * Dead code in the Log4j appender; patched by Jose Quinteiro; reviewed by Jun Rao; KAFKA-303
+  * kafka-console-producer does not take in customized values of --batch-size or --timeout; patched by Jun Rao; reviewed by Edward Smith; KAFKA-279
+  * reverting previous commit for KAFKA-296 because patch didn't apply cleanly
+  * Update Go Client to new version of Go; patched by AaronR; KAFKA-296
+  * LogManager test fails on linux; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-220
+  * trivial fix to include violated payload size in MessageSizeTooLargeException; patched by Jun Rao
+  * broker deletes all file segments when cleaning up an empty log segment; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-292
+  * Niek Sanders - KAFKA-284 fixed compilation issue for cpp client
+  * use propertyExists to test if both broker.list and zk.connect are present; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-290
+  * Increase maximum value of log.retention.size; patched by Elben Shira; reviewed by Jun Rao; KAFKA-285
+  * consumer sometimes don't release partition ownership properly in ZK during rebalance; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-286
+  * add jmx beans in broker to track # of failed requests; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-283
+  * Add a shallow iterator to the ByteBufferMessageSet; patched by Yang Ye; reviewed by Jun Rao; KAFKA-277
+  * A tool to UPDATE Zookeeper partition-offset with input from a file; patched by John Fung; reviewed by Jun Rao; KAFKA-255
+  * A tool to GET Zookeeper partition-offset and output to files; patched by John Fung; reviewed by Jun Rao; KAFKA-254
+  * make time-based reconnect starting at a random time; patched by Yang Ye; reviewed by Jun Rao; KAFKA-268
+  * trivial fix for kafka-producer-perf-test.sh
+  * test access, fixed space
+  * KAFKA-274 Handle corrupted messages cleanly; patched by nehanarkhede; reviewed by junrao
+  * shutdown watch executor thread properly; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-265
+  * trivial fix to add trace logging in FetcherRunnable
+  * fix condition to use await instead of wait; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-265
+  * add JMX on broker to track bytes/messages per topic; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-272
+  * time-based reconnect in producer; patched by Yang Ye; reviewed by Jun Rao; KAFKA-268
+  * Add a queue of zookeeper notifications in the zookeeper consumer to reduce the number of rebalancing attempts; patched by Jun Rao; reviewed by Neha Narkhede; KAFKA-265
+  * trivial change to reduce default fetcher queue size
+  * KAFKA-262 Bug in the consumer rebalancing logic causes one consumer to release partitions that it does not own; patched by Neha Narkhede; reviewed by Jun Rao
+  * KAFKA-263 Enhance single host broker failure test to have 2 topics with uneven distribution on the source brokers; patched by John Fung; reviewed by Neha Narkhede
+  * KAFKA-257 Hadoop producer should use software load balancer; patched by Sam Shah; reviewed by nehanarkhede
+  * KAFKA 256 Bug in the consumer rebalancing logic leads to the consumer not pulling data from some partitions; patched by nehanarkhede; reviewed by joelkoshy
+  * Corrupted request shuts down the broker; patched by Jun Rao; reviewed by Jay Kreps and Neha Narkhede; KAFKA-261
+  * ConsumerIterator throws a IllegalStateException after a ConsumerTimeout occurs; patched by Jun Rao; reviewed by Joel Koshy; KAFKA-241
+  * max.message.size and fetch.size defaults should be consistent; patched by Pierre-Yves Ritschard; reviewed by Jun Rao; KAFKA-247
+  * KAFKA 244 Improve log4j appender to use kafka.producer.Producer; patched by vtkstef; reviewed by nehanarkhede 
+
+ -- Vasily Kolpakov <quasi@yandex-team.ru>  Thu, 20 Mar 2014 15:13:34 +0400
+
 qmon-kafka (0.8.0~qmon5) unstable; urgency=low
 
   * Merged with upstream
